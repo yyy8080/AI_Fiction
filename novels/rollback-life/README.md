@@ -2,6 +2,25 @@
 
 重生都市文 · 全五卷 · **500章** · 扩写至约500章已完成（第1–500章全文在库）
 
+## 在线阅读 / 复制
+
+想把某一章的标题和正文复制出去发到别的平台，用 [`reader/`](./reader/) 这个网页版工具，别去翻 Markdown：
+章节可搜可跳、上一章下一章、一键复制「标题」「正文」「标题+正文」，还能按区间批量导出 `.txt`，手机上也能用。
+
+- **在线地址**：<https://yyy8080.github.io/AI_Fiction/>（Pages 开启后生效；深链形如 `.../#/ch/250`）
+- **本地预览**：
+
+  ```bash
+  cd novels/rollback-life/reader
+  node build.mjs           # 正文有改动时重新生成 data/
+  python3 -m http.server 8099   # 或 npx serve -l 8099 .
+  # 打开 http://localhost:8099/
+  ```
+
+  必须走 HTTP 服务器，直接双击 `index.html` 会因浏览器跨域策略读不到 `data/*.json`。
+
+详细说明与部署方式见 [reader/README.md](./reader/README.md)。
+
 ## 设定摘要
 
 - 主角陈屿：前世 40 岁苦逼程序员，加班改需求猝死，最后一句「好的，马上改」
