@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f2933">
+<meta name="description" content="《回滚人生》全 500 章在线阅读与一键复制，方便复制标题与正文发布到各平台。">
+<title>回滚人生 · 章节复制</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>⏱</text></svg>">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <button class="icon-btn" id="menuBtn" aria-label="打开章节目录" aria-expanded="false">
+    <span aria-hidden="true">☰</span>
+  </button>
+  <div class="brand">
+    <strong>回滚人生</strong>
+    <span class="brand-sub">章节复制</span>
+  </div>
+  <div class="topbar-actions">
+    <span class="stat" id="totalStat" aria-live="polite"></span>
+    <button class="ghost-btn" id="fontBtn" title="切换字号">字号</button>
+    <button class="ghost-btn" id="exportBtn">批量导出</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar" aria-label="章节目录">
+    <div class="side-head">
+      <input id="search" type="search" inputmode="search" autocomplete="off"
+             placeholder="搜索章号或标题，如 250 / 敲钟" aria-label="搜索章节">
+      <p class="side-meta" id="searchMeta"></p>
+    </div>
+    <nav class="chapter-list" id="chapterList"></nav>
+  </aside>
+
+  <div class="scrim" id="scrim" hidden></div>
+
+  <main class="main" id="main">
+    <div class="copybar">
+      <button class="copy-btn" data-copy="title">复制标题</button>
+      <button class="copy-btn" data-copy="body">复制正文</button>
+      <button class="copy-btn primary" data-copy="both">复制标题+正文</button>
+      <span class="copybar-hint">快捷键：← → 翻章 · C 复制标题+正文</span>
+    </div>
+
+    <article class="reader" id="reader">
+      <p class="loading">正在载入章节数据…</p>
+    </article>
+
+    <nav class="pager" id="pager" hidden>
+      <button class="page-btn" id="prevBtn">← 上一章</button>
+      <button class="page-btn" id="nextBtn">下一章 →</button>
+    </nav>
+  </main>
+</div>
+
+<div class="export-panel" id="exportPanel" hidden role="dialog" aria-modal="true" aria-labelledby="exportTitle">
+  <div class="export-card">
+    <h2 id="exportTitle">批量导出</h2>
+    <div class="export-row">
+      <label>从第 <input type="number" id="exportFrom" min="1" value="1"> 章</label>
+      <label>到第 <input type="number" id="exportTo" min="1" value="10"> 章</label>
+    </div>
+    <label class="export-check">
+      <input type="checkbox" id="exportWithTitle" checked> 每章包含标题
+    </label>
+    <p class="export-meta" id="exportMeta"></p>
+    <div class="export-actions">
+      <button class="page-btn" id="exportCancel">取消</button>
+      <button class="copy-btn" id="exportCopy">复制为一段文本</button>
+      <button class="copy-btn primary" id="exportDownload">下载 .txt</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
