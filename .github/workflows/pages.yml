@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'novels/rollback-life/**'
+      - 'docs/**'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -31,7 +32,16 @@ jobs:
         working-directory: novels/rollback-life/reader
         run: node build.mjs
 
-      - uses: actions/configure-pages@v5
+      - name: 同步到 docs（兼容 Deploy from a branch）
+        run: |
+          rm -rf docs && mkdir -p docs && cp -a novels/rollback-life/reader/. docs/
+          touch docs/.nojekyll
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+        continue-on-error: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -39,6 +49,7 @@ jobs:
 
   deploy:
     needs: build
+    if: success()
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -46,3 +57,4 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true
